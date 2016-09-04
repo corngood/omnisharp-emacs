@@ -22,7 +22,7 @@
   (setq omnisharp--server-info
         (make-omnisharp--server-info
          ;; use a pipe for the connection instead of a pty
-         (let ((process-connection-type nil))
+         (let ((process-connection-type (if (eq system-type 'cygwin) process-connection-type nil)))
            (-doto (start-process
 		   "OmniServer" ; process name
 		   "OmniServer" ; buffer name
